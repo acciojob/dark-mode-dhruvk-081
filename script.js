@@ -1,6 +1,6 @@
 //your JS code here. If required.
 let body = document.getElementsByTagName("body")[0];
-let btn = document.querySelector("button");
+let btn = document.querySelector(".btn");
 let heading = document.querySelector("h1");
 let darkModeEnabled = localStorage.getItem("darkModeEnabled");
 
