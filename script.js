@@ -1,3 +1,4 @@
+//your JS code here. If required.
 let body = document.getElementsByTagName("body")[0];
 let btn = document.querySelector(".btn");
 let heading = document.querySelector("h1");
@@ -72,41 +73,4 @@ function fillFormWithData() {
       }
     }
   }
-}
-
-// Cypress test cases
-// ------------------------------------------------
-
-// Test case 1
-() => {
-  // Fill out form
-  cy.get('#name').type('John Doe');
-  cy.get('#email').type('john@example.com');
-  cy.get('#phone').type('555-555-5555');
-
-  // Submit form
-  cy.get('input[type="submit"]').click();
-
-  // Check that form data was saved to localStorage
-  cy.window().then(win => {
-    const forms = JSON.parse(win.localStorage.getItem('forms'));
-    expect(forms).to.have.length(1);
-    expect(forms[0]).to.deep.equal({ name: 'John Doe', email: 'john@example.com', phone: '555-555-5555' });
-  });
-}
-
-// Test case 2
-() => {
-  // Save form data to localStorage
-  cy.window().then(win => {
-    win.localStorage.setItem('forms', JSON.stringify([{ name: 'Jane Doe', email: 'jane@example.com', phone: '123-456-7890' }]));
-  });
-
-  // Reload page
-  cy.visit(baseUrl);
-
-  // Check that form is auto-filled
-  cy.get('#name').should('have.value', 'Jane Doe');
-  cy.get('#email').should('have.value', 'jane@example.com');
-  cy.get('#phone').should('have.value', '123-456-7890');
 }
